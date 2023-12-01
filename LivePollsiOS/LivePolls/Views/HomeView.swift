@@ -19,10 +19,14 @@ struct HomeView: View {
             deleteOptionPoll
             
         } //: List
-        .alert("Erorr", isPresented: .constant(homeViewModel.error != nil)) {
-             
-        } message: {
-            Text(homeViewModel.error ?? "an error ocurred")
+        .alert(isPresented: .constant(homeViewModel.error != nil)) {
+            Alert(
+                title: Text("Error"),
+                message: Text(homeViewModel.error ?? "Unknown error"),
+                dismissButton: .default(Text("OK")) {
+                    homeViewModel.error = nil
+                }
+            )
         }
         .sheet(item: $homeViewModel.modalPollId, content: { id in
             NavigationStack {

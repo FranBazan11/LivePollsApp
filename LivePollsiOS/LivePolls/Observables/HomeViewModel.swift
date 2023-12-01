@@ -89,7 +89,6 @@ class HomeViewModel: ObservableObject {
         self.newOptionName = ""
     }
     
-    
     @MainActor
     func deletePoll() async {
         isLoading = true
